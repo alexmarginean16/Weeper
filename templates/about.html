@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+	<div class="top">
+		
+		<header class="inverted-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="inverted-nav">
+					<ul>
+						<li><a href="{{ url_for('about') }}" class="active" id="active-inverted">About</a></li>
+						<li><a href="{{ url_for('login') }}">Log in</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+
+		<section>
+			<div class="container">
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							<h3 class="error">{{ message }}</h3>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<h1>Keep your spendings in a single platform.
+				<br>Save more money.
+				</h1>
+				<img src="{{ url_for('static', filename='img/path.png' ) }}" id="path-img">
+				<br><br>
+				<a href="{{ url_for('register') }}" class="button-lg">Sign Up</a>
+			</div>
+		</section>
+		
+	</div>
+
+	<section>
+		<div class="container">
+
+			<div class="div-center">
+				<div class="photo-item">
+					<img src="{{ url_for('static', filename='img/pay.png') }}" class="round-img">
+					<h2>1. Spend</h2>
+				</div>
+				<div class="photo-item">
+					<img src="{{ url_for('static', filename='img/add.png') }}" class="round-img">
+					<h2>2. Track spendings</h2>
+				</div>
+				<div class="photo-item" style="margin-right: 0%;">
+					<img src="{{ url_for('static', filename='img/review.png') }}" class="round-img">
+					<h2>3. Review spendings</h2>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('about') }}">About</a></li>
+						<li><a href="{{ url_for('register') }}" id="active">Sign up</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container">
+			<div class="login">
+				<form method="POST" action="{{ url_for('register') }}">
+					<a href="{{ url_for('login') }}">Go to Log in page</a><br><br>
+					<p class="error">{{ error }}</p>
+					<p>Username:</p>
+					<input type="text" class="textfield" name="username">
+					<p>Email:</p>
+					<input type="email" class="textfield" name="email">
+					<p>Password:</p>
+					<input type="password" class="textfield" name="password">
+					<p>Repeat Password:</p>
+					<input type="password" class="textfield" name="password2">
+					<button type="submit" class="btn-submit">Sign up</button>
+				</form>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('about') }}">About</a></li>
+						<li><a href="{{ url_for('login') }}" id="active">Log in</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container">
+			<div class="login">
+				<form method="POST" action="{{ url_for('login') }}">
+					<a href="{{ url_for('register') }}">Go to Sign up page</a><br><br>
+					<p class="error">{{ error }}</p>
+					<p>Username:</p>
+					<input type="text" class="textfield" name="username">
+					<p>Password:</p>
+					<input type="password" class="textfield" name="password">
+					<button type="submit" class="btn-submit">Log in</button>
+				</form>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Topup{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+						<li><a href="{{ url_for('history') }}">History</a></li>
+						<li><a href="{{ url_for('profile') }}">Profile</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container">
+			<form method="POST" action="{{ url_for('changemail') }}">
+				<p>Email:</p>
+				<input type="email" class="textfield" name="email" required value="{{ email }}">
+
+				<button type="submit" class="btn-submit">Update</button>
+			</form>
+		</div>
+	</section>
+{% endblock %}

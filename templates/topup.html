@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Topup{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+						<li><a href="{{ url_for('history') }}">History</a></li>
+						<li><a href="{{ url_for('profile') }}">Profile</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container">
+			<form method="POST" action="{{ url_for('topup') }}">
+				<div class="form-section">
+					<img src="{{ url_for('static', filename='img/img-add.png') }}" class="img-balance-field">
+					<div class="balance-fields">
+						<input type="number" name="total" class="input-lg" placeholder="0.00" required>
+						<h1>RON</h1>
+					</div>
+				</div>
+				<p>Date:</p>
+				<input type="text" class="textfield" name="date" required value="{{ date }}" disabled>
+				<p>Time:</p>
+				<input type="text" class="textfield" name="time" required value="{{ time }}" disabled>
+
+				<button type="submit" class="btn-submit">Top up</button>
+			</form>
+		</div>
+	</section>
+{% endblock %}

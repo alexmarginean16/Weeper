@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('dashboard') }}" id="active">Dashboard</a></li>
+						<li><a href="{{ url_for('history') }}">History</a></li>
+						<li><a href="{{ url_for('profile') }}">Profile</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<h3 class="info">{{ message }}</h3>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			<div class="dashboard">
+
+				<form method="POST" action="{{ url_for('uploadreceipt') }}" enctype="multipart/form-data">
+						<label class="photo-upload">
+							<input type="file" name="receipt-photo" id="receipt-photo" onchange="form.submit()" class="receipt-photo">
+							<i class="fas fa-camera" style="font-size: 30px;"></i>
+						</label>
+					</form>
+
+				<div class="dashboard-inner">
+
+					<div class="dash-center">
+						<div class="box_chart">
+							<div class="chart" data-percent="{{percentage_today|int}}%">
+								<p class="top_text">Spent Today</p>
+								<p class="bottom_text">{{ total_today }} RON</p>
+							</div>
+						</div>
+
+						<div class="box_mid">
+							<h2>Balance</h2>
+							<h1>{{ balance }} RON</h1>
+						</div>
+
+						<div class="box_chart">
+							<div class="chart2" data-percent="{{percentage_month|int}}%">
+								<p class="top_text">&nbsp;This Month</p>
+								<p class="bottom_text">{{ total_month }} RON</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+			<script src="{{ url_for('static', filename='js/jquery.easypiechart.js') }}"></script>
+			<script>
+				$(function() {
+					$('.chart').easyPieChart({
+							size: 220,
+							barColor: '#ffffff',
+							scaleColor: false,
+							lineWidth: 13,
+							trackColor: '#65E8E8',
+					});
+				});
+
+				$(function() {
+					$('.chart2').easyPieChart({
+							size: 220,
+							barColor: '#ffffff',
+							scaleColor: false,
+							lineWidth: 13,
+							trackColor: '#6BF1AB',
+					});
+				});
+			</script>
+
+			<button onclick="window.location.href='{{ url_for("topup") }}'" class="btn-balance bg-green">+</button><button onclick="window.location.href='{{ url_for("subtract") }}'" class="btn-balance bg-red">-</button>
+
+			<h1>Categories</h1>
+
+			{% if food_percentage %}
+			<div class="type">
+				<div class="type-inner">
+					<img src="{{ url_for('static', filename='img/foodicon.png') }}">
+					<h2>Food - {{ food_percentage }}%</h2>
+				</div>
+			</div>
+			{% endif %}
+			{% if clothing_percentage %}
+			<div class="type">
+				<div class="type-inner">
+					<img src="{{ url_for('static', filename='img/clothingicon.png') }}">
+					<h2>Clothing - {{ clothing_percentage }}%</h2>
+				</div>
+			</div>
+			{% endif %}
+			{% if groceries_percentage %}
+			<div class="type">
+				<div class="type-inner">
+					<img src="{{ url_for('static', filename='img/groceriesicon.png') }}">
+					<h2>Groceries - {{ groceries_percentage }}%</h2>
+				</div>
+			</div>
+			{% endif %}
+			{% if electronics_percentage %}
+			<div class="type">
+				<div class="type-inner">
+					<img src="{{ url_for('static', filename='img/electronicsicon.png') }}">
+					<h2>Electronics - {{ electronics_percentage }}%</h2>
+				</div>
+			</div>
+			{% endif %}
+			{% if other_percentage %}
+			<div class="type">
+				<div class="type-inner">
+					<img src="{{ url_for('static', filename='img/othericon.png') }}">
+					<h2>Other - {{ other_percentage }}%</h2>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</section>
+{% endblock %}

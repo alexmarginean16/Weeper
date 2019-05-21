@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+		
+		<header class="normal-header">
+			<div class="container">
+				<a href="{{ url_for('dashboard') }}"><h1>💰Weeper</h1></a>
+				<div class="hamburger-toggle"><i class="fas fa-bars" style="font-size: 1.5em; margin: 0; padding: 0;"></i></div>
+				<nav class="normal-nav">
+					<ul>
+						<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+						<li><a href="{{ url_for('history') }}">History</a></li>
+						<li><a href="{{ url_for('profile') }}" id="active">Profile</a></li>
+					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</header>
+		
+
+	<section>
+		<div class="container" >
+			<center><img src="{{ url_for('static', filename='img/profile.png') }}" width="300px" style="opacity: 0.3"></center>
+			
+			<br><br>
+			<div class="centerdiv">
+				<h1>Balance: {{ balance }} RON</h1>
+				<h3>Username: {{ username }}</h3>
+				<h3>Email: {{ email }} &nbsp; <a href="{{ url_for('changemail') }}"><i class="far fa-edit"></i></a></h3> 
+				<br>
+				<a href="{{ url_for('logout') }}" class="logout">Log out</a>
+			</div>
+		
+		</div>
+	</section>
+{% endblock %}
