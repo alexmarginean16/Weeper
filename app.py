@@ -15,6 +15,7 @@ ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['MONGO_DBNAME'] = 'wkeeper'
 app.config['MONGO_URI'] = 'mongodb://wkeeper:wkeeper10@ds123624.mlab.com:23624/wkeeper'
 mongo = PyMongo(app)
+#New link(migrated from mLab to MongoDB Atlas mongodb+srv://wkeeper:<password>@wkeeper.kl8oh.mongodb.net/wkeeper?retryWrites=true&w=majority
 
 users = mongo.db.users
 transactions = mongo.db.transactions
